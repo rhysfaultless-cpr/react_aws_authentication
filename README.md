@@ -30,6 +30,13 @@
     - _? Do you want to configure advanced settings?_
         - `No, I am done.`
 5.  `amplify push`
+6.  `npm install aws-amplify`
+7.  Import ad call authenticaton in _App.js_
+    ```
+    import { Amplify, Auth } from 'aws-amplify';
+    import awsconfig from './aws-exports';
+    Amplify.configure(awsconfig);
+    ```
 
 ---
 
