@@ -1,9 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import { Amplify, Auth } from 'aws-amplify';
-import awsconfig from './aws-exports';
-Amplify.configure(awsconfig);
 
+import { Amplify, Auth } from 'aws-amplify';
+// import awsconfig from './aws-exports';
+// Amplify.configure(awsconfig);
+
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
+/*
 function App() {
   return (
     <div className="App">
@@ -26,3 +33,16 @@ function App() {
 }
 
 export default App;
+*/
+
+function App({ signOut, user }) {
+  return (
+    <>
+      <img src={logo} className="App-logo" alt="logo" />
+      <h1>Hello {user.username}</h1>
+      <button onClick={signOut}>Sign out</button>
+    </>
+  );
+}
+
+export default withAuthenticator(App);

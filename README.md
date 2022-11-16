@@ -31,12 +31,24 @@
         - `No, I am done.`
 5.  `amplify push`
 6.  `npm install aws-amplify`
-7.  Import ad call authenticaton in _App.js_
+7.  Import and call authenticaton in _App.js_
     ```
     import { Amplify, Auth } from 'aws-amplify';
     import awsconfig from './aws-exports';
     Amplify.configure(awsconfig);
     ```
+8.  Use a prebuild AWS component for account-creation and sign-in.
+    `npm install aws-amplify @aws-amplify/ui-react`
+    
+    And importing this component into _App.js_
+    ```
+    import { withAuthenticator } from '@aws-amplify/ui-react';
+    import '@aws-amplify/ui-react/styles.css';
+    import awsExports from './aws-exports';
+    Amplify.configure(awsExports);
+    ```
+
+    This blocks the User from seeing your React app before logging in.
 
 ---
 
