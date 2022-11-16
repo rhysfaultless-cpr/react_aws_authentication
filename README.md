@@ -15,7 +15,21 @@
 ## Process used to create this repo
 
 1.  `npx create-react-app react_aws_authentication`
-
+2.  `npm install -g @aws-amplify/cli`
+3.  `amplify init` since I already have an Amazon Web Services IAM profile.
+    This command redirects me to a Google Chrome tab asking me to enter:
+    - My AWS acoount number
+    - My IAM username
+    - my IAM password
+    Use the command `amplify configure` if you do not have IAM user profiles yet;noting that you will still need to have created an AWS account using your root-email address.
+4.  `amplify add auth`
+    - _? Do you want to use the default authentication and security configuration?_
+      - `Default configuration`
+    - _? How do you want users to be able to sign in?_
+      - `Username`
+    - _? Do you want to configure advanced settings?_
+        - `No, I am done.`
+5.  `amplify push`
 
 ---
 
