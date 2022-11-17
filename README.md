@@ -49,6 +49,12 @@
     ```
 
     This blocks the User from seeing your React app before logging in.
+9.  Set up Local State of the User's Group in _App.js_ with `useState`
+10. Update Local State of the User's Group based on AWS database using `Async` / `useEffect`
+11. Read  the Local State of the User's Group, and update the React-Routing's pages according to the Group
+    - Routing paths will be directed to a PageBlocked function by default
+    - Routing paths will be updated to actual pages based on Local State of User's Group.
+
 
 ---
 
@@ -63,3 +69,4 @@ The commands shown are for a Linux system, but you can replicate these by using 
 2.  `cd react_aws_authentication.git`
 3.  `npm install`
 4.  `npm run start`
+
