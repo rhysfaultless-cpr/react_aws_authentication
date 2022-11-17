@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import HomePage from "./HomePage";
 import PageA from "./PageA";
 import PageB from "./PageB";
+import PageC from "./PageC";
 import PageBlocked from "./PageBlocked";
 
 import { Amplify, Auth } from 'aws-amplify';
@@ -20,11 +21,14 @@ async function fetchTenant(setTenant, setUserIsCustomer, setUserIsReseller, setU
   const {accessToken} = await Auth.currentSession();
   // get the tenant from the top of the cognito groups list
   const cognitogroups = accessToken.payload['cognito:groups'];
-  const tenant = cognitogroups[0];
+  const tenant = cognitogroups;
   setTenant(tenant);
-  setUserIsCustomer(tenant.indexOf('customer') !== -1);
-  setUserIsReseller(tenant.indexOf('reseller') !== -1);
-  setUserIsEmployee(tenant.indexOf('employee') !== -1);
+  const tempUserIsCustomer = (tenant.indexOf('employee') !== -1) || (tenant.indexOf('reseller') !== -1) || (tenant.indexOf('customer') !== -1)
+  const tempUserIsReseller = (tenant.indexOf('employee') !== -1) || (tenant.indexOf('reseller') !== -1)
+  const tempUserIsEmployee = (tenant.indexOf('employee') !== -1)
+  setUserIsCustomer(tempUserIsCustomer);
+  setUserIsReseller(tempUserIsReseller);
+  setUserIsEmployee(tempUserIsEmployee);
 }
 
 function App({ signOut, user }) {
@@ -43,9 +47,9 @@ function App({ signOut, user }) {
       <Router>
         <div>
           <h1>Hello {user.username}</h1>
-          <p>Current User's Group includes 'customer': {String(tenant.indexOf('customer') !== -1)}</p>
-          <p>Current User's Group includes 'reseller': {String(tenant.indexOf('reseller') !== -1)}</p>
-          <p>Current User's Group includes 'employee': {String(tenant.indexOf('employee') !== -1)}</p>
+          <p>Current User's Group includes <em>customer</em>: <b>{String(userIsCustomer)}</b></p>
+          <p>Current User's Group includes <em>reseller</em>: <b>{String(userIsReseller)}</b></p>
+          <p>Current User's Group includes <em>employee</em>: <b>{String(userIsEmployee)}</b></p>
           <button onClick={signOut}>Sign out</button>
 
           <hr />
@@ -60,6 +64,9 @@ function App({ signOut, user }) {
             <li>
               <Link to="/pageb">Page B</Link>
             </li>
+            <li>
+              <Link to="/pagec">Page C</Link>
+            </li>
           </ul>
 
           <hr />
@@ -68,8 +75,10 @@ function App({ signOut, user }) {
             <Route path="/" element={<HomePage />} />
             {!userIsCustomer && <Route path="/pagea" element={<PageBlocked />} />}
             {userIsCustomer && <Route path="/pagea" element={<PageA />} />}
-            {!userIsEmployee && <Route path="/pageb" element={<PageBlocked />} />}
-            {userIsEmployee && <Route path="/pageb" element={<PageB />} />}
+            {!userIsReseller && <Route path="/pageb" element={<PageBlocked />} />}
+            {userIsReseller && <Route path="/pageb" element={<PageB />} />}
+            {!userIsEmployee && <Route path="/pagec" element={<PageBlocked />} />}
+            {userIsEmployee && <Route path="/pagec" element={<PageC />} />}
           </Routes>
         </div>
       </Router>
