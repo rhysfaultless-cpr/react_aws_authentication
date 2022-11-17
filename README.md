@@ -70,3 +70,18 @@ The commands shown are for a Linux system, but you can replicate these by using 
 3.  `npm install`
 4.  `npm run start`
 
+## References / Readings that helped create this
+
+1.  https://docs.amplify.aws/lib/auth/getting-started/q/platform/js/#authentication-with-amplify
+2.  https://github.com/aws-amplify/amplify-cli/issues/186
+3.  https://github.com/aws-amplify/amplify-cli
+4.  https://github.com/aws-amplify/amplify-cli/issues/35
+5.  https://stackoverflow.com/questions/71791450/module-not-found-cant-resolve-aws-exports
+6.  https://docs.amplify.aws/lib/graphqlapi/getting-started/q/platform/js/#create-the-graphql-api
+7.  https://stackoverflow.com/questions/59708481/aws-amplify-deploy-failure-due-to-aws-exports
+8.  https://docs.aws.amazon.com/amplify/latest/userguide/build-settings.html
+9.  https://medium.com/@dantasfiles/three-methods-to-get-user-information-in-aws-amplify-authentication-e4e39e658c33
+10. https://stackoverflow.com/questions/52878146/aws-cognito-how-to-get-users-group-from-token-object
+11. https://dev.to/beezfedia/check-if-a-user-is-part-of-a-cognito-group-in-aws-amplify-17ca
+12. https://docs.amplify.aws/lib/auth/manageusers/q/platform/js/#forgot-password
+14. https://medium.com/@dantasfiles/multi-tenant-aws-amplify-method-2-cognito-groups-38b40ace2e9e
