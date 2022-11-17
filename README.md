@@ -15,6 +15,45 @@
 ## Process used to create this repo
 
 1.  `npx create-react-app react_aws_authentication`
+2.  `npm install -g @aws-amplify/cli`
+3.  `amplify init` since I already have an Amazon Web Services IAM profile.
+    This command redirects me to a Google Chrome tab asking me to enter:
+    - My AWS acoount number
+    - My IAM username
+    - my IAM password
+    Use the command `amplify configure` if you do not have IAM user profiles yet;noting that you will still need to have created an AWS account using your root-email address.
+4.  `amplify add auth`
+    - _? Do you want to use the default authentication and security configuration?_
+      - `Default configuration`
+    - _? How do you want users to be able to sign in?_
+      - `Username`
+    - _? Do you want to configure advanced settings?_
+        - `No, I am done.`
+5.  `amplify push`
+6.  `npm install aws-amplify`
+7.  Import and call authenticaton in _App.js_
+    ```
+    import { Amplify, Auth } from 'aws-amplify';
+    import awsconfig from './aws-exports';
+    Amplify.configure(awsconfig);
+    ```
+8.  Use a prebuild AWS component for account-creation and sign-in.
+    `npm install aws-amplify @aws-amplify/ui-react`
+    
+    And importing this component into _App.js_
+    ```
+    import { withAuthenticator } from '@aws-amplify/ui-react';
+    import '@aws-amplify/ui-react/styles.css';
+    import awsExports from './aws-exports';
+    Amplify.configure(awsExports);
+    ```
+
+    This blocks the User from seeing your React app before logging in.
+9.  Set up Local State of the User's Group in _App.js_ with `useState`
+10. Update Local State of the User's Group based on AWS database using `Async` / `useEffect`
+11. Read  the Local State of the User's Group, and update the React-Routing's pages according to the Group
+    - Routing paths will be directed to a PageBlocked function by default
+    - Routing paths will be updated to actual pages based on Local State of User's Group.
 
 
 ---
@@ -30,3 +69,19 @@ The commands shown are for a Linux system, but you can replicate these by using 
 2.  `cd react_aws_authentication.git`
 3.  `npm install`
 4.  `npm run start`
+
+## References / Readings that helped create this
+
+1.  https://docs.amplify.aws/lib/auth/getting-started/q/platform/js/#authentication-with-amplify
+2.  https://github.com/aws-amplify/amplify-cli/issues/186
+3.  https://github.com/aws-amplify/amplify-cli
+4.  https://github.com/aws-amplify/amplify-cli/issues/35
+5.  https://stackoverflow.com/questions/71791450/module-not-found-cant-resolve-aws-exports
+6.  https://docs.amplify.aws/lib/graphqlapi/getting-started/q/platform/js/#create-the-graphql-api
+7.  https://stackoverflow.com/questions/59708481/aws-amplify-deploy-failure-due-to-aws-exports
+8.  https://docs.aws.amazon.com/amplify/latest/userguide/build-settings.html
+9.  https://medium.com/@dantasfiles/three-methods-to-get-user-information-in-aws-amplify-authentication-e4e39e658c33
+10. https://stackoverflow.com/questions/52878146/aws-cognito-how-to-get-users-group-from-token-object
+11. https://dev.to/beezfedia/check-if-a-user-is-part-of-a-cognito-group-in-aws-amplify-17ca
+12. https://docs.amplify.aws/lib/auth/manageusers/q/platform/js/#forgot-password
+14. https://medium.com/@dantasfiles/multi-tenant-aws-amplify-method-2-cognito-groups-38b40ace2e9e
