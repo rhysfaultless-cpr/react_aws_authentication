@@ -1,6 +1,74 @@
 # react_aws_authentication
 
----
+## Link to the deployed website:
+
+- [_production_ branch](https://production.d13gc4trt27el4.amplifyapp.com/)
+
+## Overview of the deployed website, and its purpose
+
+This repository uses a [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) example website.
+The main difference between Docusaurus's example, and this repository's deployed site, is that this repository includes an authentication sign-in using Amazon Web Services Cognito.
+Cognito has tools for you to manage the database of User information, and connect this to your React React based website.
+The site itself is deployed using [Amazon Web Services Amplify](https://create-react-app.dev/docs/deployment/#aws-amplify).
+There are other React deployment options like [Netlify](https://create-react-app.dev/docs/deployment/#netlify), [GitHub Pages](https://create-react-app.dev/docs/deployment/#github-pages), [Heroku](https://create-react-app.dev/docs/deployment/#heroku), and [Vercel](https://create-react-app.dev/docs/deployment/#vercel).
+For our use case, AWS was ideal for the balance between; low cost, deploying multiple branches, and an ecosystem of other features like Authentication.
+
+Note, this guide is only relevant to you if you are using AWS's Cognito and Amplify for your React website.
+
+### Walkthrough of this website
+
+1. Go to the deployed site at https://production.d13gc4trt27el4.amplifyapp.com/
+2. You will be asked to sign-in or create a new account.
+
+    <center><img src="/public/readme_images/readme_1.png" width="300"/></center>
+
+    I have created three accounts, which you are welcome to sign-in with for the demonstration:
+    
+    |   Username   | Password  |
+    | :----------- | :-------- |
+    | cpr_employee | clearpath |
+    | cpr_reseller | clearpath |
+    | cpr_customer | clearpath |
+
+3. As a website administrator, I can go to our AWS account's console at https://us-east-2.console.aws.amazon.com/cognito/users/, and review all the User accounts in Cognito.
+    Note that the address will change based on what AWS datacenter you are using for your Cognito database.
+    I used AWS's _us-east-2_ datacenter.
+
+    <center><img src="/static/img/readme_images/readme_2.png" width="800"/></center>
+
+    You can use the AWS Cognito console to block User accounts, assign User accounts to Groups for different privileges.
+
+    <center><img src="/static/img/readme_images/readme_3.png" width="800"/></center>
+
+4.  Back to our demonstration website; we can enter our username and password.
+
+    <center><img src="/static/img/readme_images/readme_4.png" width="300"/></center>
+
+5.  We are routed to the homepage of the Reack website.  
+
+    <center><img src="/static/img/readme_images/readme_5.png" width="300"/></center>
+
+6.  Click on the buttons _Page A_, _Page B_, and _Page c_.
+    You will be routed to the Pages, _/pagea_, _/pageb_, or _/pagec_.
+    The content that is rendered is dependent on the User's Group in AWS Cognito.
+    The example Users I created have the following permissions:
+
+    |   Username   | Permissions                                          |
+    | :----------- | :--------------------------------------------------- |
+    | cpr_customer | group **'customer'** with minimal access permissions |
+    | cpr_reseller | group **'reseller'** with more access permissions    |
+    | cpr_employee | group **'employee'** with full access permissions    |
+    
+    The content rendered for _/pagec_ is only acccessable as the User *cpr_employee*:
+
+    - User = **cpr_customer**
+      <center><img src="/static/img/readme_images/readme_6.png" width="300"/></center>
+    
+    - User = **cpr_reseller**
+      <center><img src="/static/img/readme_images/readme_7.png" width="300"/></center>
+
+    - User = **cpr_employee**
+      <center><img src="/static/img/readme_images/readme_8.png" width="300"/></center>
 
 ## Tools used
 
@@ -9,8 +77,6 @@
 2.  [React](https://reactjs.org/)
 3.  [AWS Amplify](https://aws.amazon.com/amplify/)
 4.  [AWS Cognito](https://aws.amazon.com/cognito/)
-
----
 
 ## Process used to create this repo
 
@@ -21,7 +87,7 @@
     - My AWS acoount number
     - My IAM username
     - my IAM password
-    Use the command `amplify configure` if you do not have IAM user profiles yet;noting that you will still need to have created an AWS account using your root-email address.
+    Use the command `amplify configure` if you do not have IAM user profiles yet; noting that you will still need to have created an AWS account using your root-email address.
 4.  `amplify add auth`
     - _? Do you want to use the default authentication and security configuration?_
       - `Default configuration`
@@ -37,7 +103,7 @@
     import awsconfig from './aws-exports';
     Amplify.configure(awsconfig);
     ```
-8.  Use a prebuild AWS component for account-creation and sign-in.
+8.  Use a prebuilt AWS component for account-creation and sign-in.
     `npm install aws-amplify @aws-amplify/ui-react`
     
     And importing this component into _App.js_
@@ -55,8 +121,6 @@
     - Routing paths will be directed to a PageBlocked function by default
     - Routing paths will be updated to actual pages based on Local State of User's Group.
 
-
----
 
 ## Process to clone and use this repo
 
