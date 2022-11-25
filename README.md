@@ -34,19 +34,19 @@ Note, this guide is only relevant to you if you are using AWS's Cognito and Ampl
     Note that the address will change based on what AWS datacenter you are using for your Cognito database.
     I used AWS's _us-east-2_ datacenter.
 
-    <center><img src="/static/img/readme_images/readme_2.png" width="800"/></center>
+    <center><img src="/public/readme_images/readme_2.png" width="800"/></center>
 
     You can use the AWS Cognito console to block User accounts, assign User accounts to Groups for different privileges.
 
-    <center><img src="/static/img/readme_images/readme_3.png" width="800"/></center>
+    <center><img src="/public/readme_images/readme_3.png" width="800"/></center>
 
 4.  Back to our demonstration website; we can enter our username and password.
 
-    <center><img src="/static/img/readme_images/readme_4.png" width="300"/></center>
+    <center><img src="/public/readme_images/readme_4.png" width="300"/></center>
 
 5.  We are routed to the homepage of the Reack website.  
 
-    <center><img src="/static/img/readme_images/readme_5.png" width="300"/></center>
+    <center><img src="/public/readme_images/readme_5.png" width="300"/></center>
 
 6.  Click on the buttons _Page A_, _Page B_, and _Page c_.
     You will be routed to the Pages, _/pagea_, _/pageb_, or _/pagec_.
@@ -62,13 +62,13 @@ Note, this guide is only relevant to you if you are using AWS's Cognito and Ampl
     The content rendered for _/pagec_ is only acccessable as the User *cpr_employee*:
 
     - User = **cpr_customer**
-      <center><img src="/static/img/readme_images/readme_6.png" width="300"/></center>
+      <center><img src="/public/readme_images/readme_6.png" width="300"/></center>
     
     - User = **cpr_reseller**
-      <center><img src="/static/img/readme_images/readme_7.png" width="300"/></center>
+      <center><img src="/public/readme_images/readme_7.png" width="300"/></center>
 
     - User = **cpr_employee**
-      <center><img src="/static/img/readme_images/readme_8.png" width="300"/></center>
+      <center><img src="/public/readme_images/readme_8.png" width="300"/></center>
 
 ## Tools used
 
